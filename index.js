@@ -10,9 +10,10 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
 });
 
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// Middleware setup
+app.use(cors());  // Enable CORS
+app.use(bodyParser.urlencoded({ extended: true }));  // Parse URL-encoded data
+app.use(bodyParser.json());  // Parse JSON data
 
 // Route to check if server is running
 app.get('/', (req, res) => {
