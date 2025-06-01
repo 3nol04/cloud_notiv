@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.post('/', async (req, res) => {
-    res.status(200).json({ message: 'Server is running' });
+app.get('/', (req, res) => {
+    res.send('Hai, ini adalah REST API untuk Fasum!');
 });
 
 app.post('/send-notification', async (req, res) => {
