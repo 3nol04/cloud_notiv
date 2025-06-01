@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
-const serviceAccount = require('./servicesAccouns.json');
 const cors = require('cors');
-require('dotenv').config();
+const serviceAccount = require('./servicesAccouns.json');
 
 // Inisialisasi Firebase Admin SDK
 admin.initializeApp({
@@ -16,14 +14,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Route utama
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
-
 // Endpoint untuk mengirim notifikasi ke perangkat
-app.post('/send-to-device', async (req, res) => {
-    const { token, title, body, senderName, senderPhotoUrl } = req.body;
+app.post('/send-notification', async (req, res) => {
+    const { token, title, body, roomId } = req.body;
 
     // Validasi input
     if (!token || !title || !body) {
@@ -40,9 +33,7 @@ app.post('/send-to-device', async (req, res) => {
         data: {
             title: title || 'Notifikasi baru',
             body: body || 'Anda memiliki notifikasi baru',
-            senderName: senderName || 'Admin',
-            senderPhotoUrl: senderPhotoUrl || '',
-            sendAt: new Date().toISOString(),
+            roomId: roomId,
             messageType: 'device-notification',
         },
         android: {
@@ -72,6 +63,7 @@ app.post('/send-to-device', async (req, res) => {
 });
 
 // Menjalankan server pada port yang telah ditentukan
+const port = 3000;
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
 });
