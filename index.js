@@ -17,7 +17,7 @@ app.use(bodyParser.json());  // Parse JSON data
 
 // Route to check if server is running
 app.get('/', (req, res) => {
-    res.send('Hai, ini adalah REST API untuk Fasum!');
+    res.send('Hai, ini adalah REST API untuk mengirim notifikasi!');
 });
 
 // Endpoint to send a notification
