@@ -3,7 +3,7 @@ const app = express();
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const serviceAccount = require('./servicesAccountKey.json'); // Path to Firebase Admin SDK service account key
+const serviceAccount = require('./servicesAccouns.json'); // Path to Firebase Admin SDK service account key
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
