@@ -14,7 +14,11 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Endpoint untuk mengirim notifikasi ke perangkat
+
+app.post('/', async (req, res) => {
+    res.status(200).json({ message: 'Server is running' });
+});
+
 app.post('/send-notification', async (req, res) => {
     const { token, title, body, roomId } = req.body;
 
